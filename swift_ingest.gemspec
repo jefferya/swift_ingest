@@ -38,5 +38,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop', '~> 0.45'
   s.add_development_dependency 'rubocop-rspec', '~> 1.10'
   s.add_development_dependency 'vcr', '~> 3.0'
+  s.add_development_dependency 'spec_helper', '~> 0'
 
 end

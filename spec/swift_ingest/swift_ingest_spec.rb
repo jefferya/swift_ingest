@@ -1,16 +1,16 @@
-require 'spec_helper'
+#require 'spec_helper'
 
-RSpec.describe SwiftIngest do
+RSpec.describe SwiftIngest::Ingestor do
   describe '#deposit_file' do
     it 'deposits new file' do
       sample_file = 'spec/fixtures/config.yml'
 
       VCR.use_cassette('swift_new_deposit') do
-        swift_depositer = SwiftIngest.new(username: 'test:tester',
-                                          password: 'testing',
-                                          tenant: 'tester',
-                                          endpoint: 'http://www.example.com:8080',
-                                          auth_version: 'v1.0')
+        swift_depositer = SwiftIngest::Ingestor.new(username: 'test:tester',
+                                                    password: 'testing',
+                                                    tenant: 'tester',
+                                                    endpoint: 'http://www.example.com:8080',
+                                                    auth_version: 'v1.0')
 
         deposited_file = swift_depositer.deposit_file(sample_file, 'ERA')
 
@@ -29,11 +29,11 @@ RSpec.describe SwiftIngest do
       sample_file = 'spec/fixtures/config_with_envs.yml'
 
       VCR.use_cassette('swift_update_deposit') do
-        swift_depositer = SwiftIngest.new(username: 'test:tester',
-                                          password: 'testing',
-                                          tenant: 'tester',
-                                          endpoint: 'http://www.example.com:8080',
-                                          auth_version: 'v1.0')
+        swift_depositer = SwiftIngest::Ingestor.new(username: 'test:tester',
+                                                    password: 'testing',
+                                                    tenant: 'tester',
+                                                    endpoint: 'http://www.example.com:8080',
+                                                    auth_version: 'v1.0')
 
         # Deposits file twice, check that it only gets added once to the container
         expect do
