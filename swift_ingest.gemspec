@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.3.1'
 
+  s.add_runtime_dependency 'activesupport', '~> 5.0'
   s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
-  s.add_runtime_dependency 'digest/md5', '~> 0'
 
 
   s.add_development_dependency 'bundler', '~> 1.14'
@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.0'
   s.add_development_dependency 'rubocop', '~> 0.45'
   s.add_development_dependency 'rubocop-rspec', '~> 1.10'
+  s.add_development_dependency 'pry', '~> 0.10', '>= 0.10.4'
   s.add_development_dependency 'vcr', '~> 3.0'
-  s.add_development_dependency 'spec_helper', '~> 0'
-
+  s.add_development_dependency 'webmock', '~> 2.1'
 end

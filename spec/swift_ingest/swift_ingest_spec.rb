@@ -1,4 +1,4 @@
-#require 'spec_helper'
+require 'spec_helper'
 
 RSpec.describe SwiftIngest::Ingestor do
   describe '#deposit_file' do
@@ -10,7 +10,8 @@ RSpec.describe SwiftIngest::Ingestor do
                                                     password: 'testing',
                                                     tenant: 'tester',
                                                     endpoint: 'http://www.example.com:8080',
-                                                    auth_version: 'v1.0')
+                                                    auth_version: 'v1.0',
+                                                    project: 'ERA')
 
         deposited_file = swift_depositer.deposit_file(sample_file, 'ERA')
 
@@ -33,7 +34,8 @@ RSpec.describe SwiftIngest::Ingestor do
                                                     password: 'testing',
                                                     tenant: 'tester',
                                                     endpoint: 'http://www.example.com:8080',
-                                                    auth_version: 'v1.0')
+                                                    auth_version: 'v1.0',
+                                                    project: 'ERA')
 
         # Deposits file twice, check that it only gets added once to the container
         expect do

@@ -1,5 +1,4 @@
 require 'swift_ingest/version'
-require 'digest/md5'
 require 'openstack'
 
 class SwiftIngest::Ingestor
