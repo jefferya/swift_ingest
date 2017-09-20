@@ -1,21 +1,17 @@
-# coding: utf-8
-
- lib = File.expand_path('../lib', __FILE__)
- $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
- require 'swift_ingest/version'
-
-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'swift_ingest/version'
 
 Gem::Specification.new do |s|
   s.name          = 'swift_ingest'
   s.version       = SwiftIngest::VERSION
   s.date          = '2017-08-31'
-  s.authors       = ["DI Team U of A"]
+  s.authors       = ['DI Team U of A']
   s.email         = 'strilets@ualberta.ca'
-  s.files         = ["lib/swift_ingest.rb"]
+  s.files         = ['lib/swift_ingest.rb']
 
-  s.summary       = "This is gems that allows depositing files into openstack swift repository"
-  s.description   = "Gem to deposit files into swift reposiroty"
+  s.summary       = 'This is gems that allows depositing files into openstack swift repository'
+  s.description   = 'Gem to deposit files into swift reposiroty'
   s.homepage      = 'http://rubygems.org/gems/swift_ingest'
   s.license       = 'MIT'
 
@@ -30,7 +26,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'activesupport', '~> 5.0'
   s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
-
 
   s.add_development_dependency 'bundler', '~> 1.14'
   s.add_development_dependency 'rake', '~> 12.0'
