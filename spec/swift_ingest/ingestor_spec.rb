@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe SwiftIngest::Ingestor do
-  describe '#deposit_file' do
+  describe '#swift_ingest' do
     it 'deposits new file' do
       sample_file = 'spec/fixtures/config.yml'
 

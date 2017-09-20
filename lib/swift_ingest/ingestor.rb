@@ -19,9 +19,7 @@ class SwiftIngest::Ingestor
 
   def deposit_file(file_name, swift_container)
     file_base_name = File.basename(file_name, '.*')
-
     checksum = Digest::MD5.file(file_name).hexdigest
-
     era_container = swift_connection.container(swift_container)
 
     # Add swift metadata with in accordance to AIP spec:
@@ -33,7 +31,8 @@ class SwiftIngest::Ingestor
       aip_version: '1.0'
     }
 
-    # ruby-openstack wants all keys of the metadata to be named like "X-Object-Meta-{{Key}}", so update them
+    # ruby-openstack wants all keys of the metadata to be named like
+    # "X-Object-Meta-{{Key}}" so update them
     metadata.transform_keys! { |key| "X-Object-Meta-#{key}" }
 
     headers = { 'etag' => checksum,
@@ -43,7 +42,8 @@ class SwiftIngest::Ingestor
       deposited_file = era_container.object(file_base_name)
       deposited_file.write(File.open(file_name), headers)
     else
-      deposited_file = era_container.create_object(file_base_name, headers, File.open(file_name))
+      deposited_file = era_container.create_object(file_base_name, headers,
+                                                   File.open(file_name))
     end
 
     deposited_file
