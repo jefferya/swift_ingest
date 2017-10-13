@@ -22,7 +22,7 @@ class SwiftIngest::Ingestor
   def deposit_file(file_name, swift_container)
     file_base_name = File.basename(file_name, '.*')
     checksum = Digest::MD5.file(file_name).hexdigest
-    era_container = swift_connection.container(swift_container)
+    container = swift_connection.container(swift_container)
 
     # Add swift metadata with in accordance to AIP spec:
     # https://docs.google.com/document/d/154BqhDPAdGW-I9enrqLpBYbhkF9exX9lV3kMaijuwPg/edit#
@@ -37,15 +37,20 @@ class SwiftIngest::Ingestor
     # "X-Object-Meta-{{Key}}" so update them
     metadata.transform_keys! { |key| "X-Object-Meta-#{key}" }
 
-    headers = { 'etag' => checksum,
-                'content-type' => 'application/x-tar' }.merge(metadata)
-
-    if era_container.object_exists?(file_base_name)
-      deposited_file = era_container.object(file_base_name)
+    if container.object_exists?(file_base_name)
+      # temporary solution until fixed in upstream:
+      # for update: construct hash for key/value pairs as strings,
+      # and metadata as additional key/value string pairs in the hash
+      headers = { 'etag' => checksum,
+                  'content-type' => 'application/x-tar' }.merge(metadata)
+      deposited_file = container.object(file_base_name)
       deposited_file.write(File.open(file_name), headers)
     else
-      deposited_file = era_container.create_object(file_base_name, headers,
-                                                   File.open(file_name))
+      # for creating new: construct hash with symbols as keys, add metadata as a hash within the header hash
+      headers = { etag: checksum,
+                  content_type:  'application/x-tar',
+                  metadata: metadata }
+      deposited_file = container.create_object(file_base_name, headers, File.open(file_name))
     end
 
     deposited_file
