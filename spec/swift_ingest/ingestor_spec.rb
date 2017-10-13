@@ -9,8 +9,7 @@ RSpec.describe SwiftIngest::Ingestor do
         swift_depositer = SwiftIngest::Ingestor.new(username: 'test:tester',
                                                     password: 'testing',
                                                     tenant: 'tester',
-                                                    endpoint: 'http://www.example.com:8080',
-                                                    auth_version: 'v1.0',
+                                                    auth_url: 'http://www.example.com:8080/auth/v1.0',
                                                     project: 'ERA')
 
         deposited_file = swift_depositer.deposit_file(sample_file, 'ERA')
@@ -33,8 +32,7 @@ RSpec.describe SwiftIngest::Ingestor do
         swift_depositer = SwiftIngest::Ingestor.new(username: 'test:tester',
                                                     password: 'testing',
                                                     tenant: 'tester',
-                                                    endpoint: 'http://www.example.com:8080',
-                                                    auth_version: 'v1.0',
+                                                    auth_url: 'http://www.example.com:8080/auth/v1.0',
                                                     project: 'ERA')
 
         # Deposits file twice, check that it only gets added once to the container
