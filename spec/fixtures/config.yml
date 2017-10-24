@@ -1,20 +1,2 @@
-# Dummy sample file for testing parsing of configuration file into PushmiPullyu
-
-debug: true
-logdir: tmp/spec/log
-monitor: false
-piddir: tmp/spec/pids
-workdir: tmp/spec/work
-process_name: test_pushmi_pullyu
-minimum_age: 1
-queue_name: test:pmpy_queue
-rollbar_token: 'abc123xyz'
-
-solr:
-  url: http://www.example.com:8983/solr/development
-
-fedora:
-  url: http://www.example.com:8983/fedora/rest
-
-swift:
-  auth_url: http://example.com:8080/auth/v1.0
+# Dummy sample file for testing deposit of swift ingestor
+# testing file
