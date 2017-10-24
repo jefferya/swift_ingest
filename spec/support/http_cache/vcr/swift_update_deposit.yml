@@ -184,7 +184,7 @@ http_interactions:
   recorded_at: Fri, 26 May 2017 22:44:59 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config_with_envs
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -223,7 +223,7 @@ http_interactions:
   recorded_at: Fri, 26 May 2017 22:44:59 GMT
 - request:
     method: put
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config_with_envs
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: UTF-8
       string: ''
@@ -268,7 +268,7 @@ http_interactions:
   recorded_at: Fri, 26 May 2017 22:45:01 GMT
 - request:
     method: put
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config_with_envs
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: ASCII-8BIT
       string: |
@@ -372,7 +372,7 @@ http_interactions:
   recorded_at: Fri, 26 May 2017 22:45:01 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config_with_envs
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -419,7 +419,7 @@ http_interactions:
   recorded_at: Fri, 26 May 2017 22:45:01 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config_with_envs
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -466,7 +466,7 @@ http_interactions:
   recorded_at: Fri, 26 May 2017 22:45:02 GMT
 - request:
     method: put
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config_with_envs
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: ASCII-8BIT
       string: |

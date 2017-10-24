@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe SwiftIngest::Ingestor do
   describe '#swift_ingest' do
     it 'deposits new file' do
-      sample_file = 'spec/fixtures/config.yml'
+      sample_file = 'spec/fixtures/example.txt'
 
       VCR.use_cassette('swift_new_deposit') do
         swift_depositer = SwiftIngest::Ingestor.new(username: 'test:tester',
@@ -16,17 +16,17 @@ RSpec.describe SwiftIngest::Ingestor do
 
         expect(deposited_file).not_to be_nil
         expect(deposited_file).to be_an_instance_of(OpenStack::Swift::StorageObject)
-        expect(deposited_file.name).to eql 'config'
+        expect(deposited_file.name).to eql 'example'
         expect(deposited_file.container.name).to eql 'ERA'
         expect(deposited_file.metadata['project']).to eql 'ERA'
-        expect(deposited_file.metadata['project-id']).to eql 'config'
+        expect(deposited_file.metadata['project-id']).to eql 'example'
         expect(deposited_file.metadata['aip-version']).to eql '1.0'
         expect(deposited_file.metadata['promise']).to eql 'bronze'
       end
     end
 
     it 'updates existing file' do
-      sample_file = 'spec/fixtures/config_with_envs.yml'
+      sample_file = 'spec/fixtures/example.txt'
 
       VCR.use_cassette('swift_update_deposit') do
         swift_depositer = SwiftIngest::Ingestor.new(username: 'test:tester',

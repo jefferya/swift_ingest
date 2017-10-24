@@ -39,7 +39,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
@@ -86,11 +86,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -133,11 +133,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -180,11 +180,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: put
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: ASCII-8BIT
       string: |
@@ -219,7 +219,7 @@ http_interactions:
       X-Object-Meta-Project:
       - ERA
       X-Object-Meta-Project-Id:
-      - config
+      - example
       X-Object-Meta-Promise:
       - bronze
       X-Object-Meta-Aip-Version:
@@ -250,11 +250,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -277,7 +277,7 @@ http_interactions:
       message: OK
     headers:
       X-Object-Meta-Project-Id:
-      - config
+      - example
       Content-Length:
       - '279'
       X-Object-Meta-Aip-Version:
@@ -305,11 +305,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -332,7 +332,7 @@ http_interactions:
       message: OK
     headers:
       X-Object-Meta-Project-Id:
-      - config
+      - example
       Content-Length:
       - '279'
       X-Object-Meta-Aip-Version:
@@ -360,11 +360,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -387,7 +387,7 @@ http_interactions:
       message: OK
     headers:
       X-Object-Meta-Project-Id:
-      - config
+      - example
       Content-Length:
       - '279'
       X-Object-Meta-Aip-Version:
@@ -415,11 +415,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 - request:
     method: head
-    uri: http://www.example.com:8080/v1/AUTH_test/ERA/config
+    uri: http://www.example.com:8080/v1/AUTH_test/ERA/example
     body:
       encoding: US-ASCII
       string: ''
@@ -442,7 +442,7 @@ http_interactions:
       message: OK
     headers:
       X-Object-Meta-Project-Id:
-      - config
+      - example
       Content-Length:
       - '279'
       X-Object-Meta-Aip-Version:
@@ -470,6 +470,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
+    http_version:
   recorded_at: Fri, 02 Jun 2017 18:29:06 GMT
 recorded_with: VCR 3.0.3
