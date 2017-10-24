@@ -5,17 +5,13 @@ class SwiftIngest::Ingestor
 
   attr_reader :swift_connection, :project
 
-  def initialize(connection)
-    @swift_connection = OpenStack::Connection.create(
-      username: connection[:username],
-      api_key: connection[:password],
-      auth_method: 'password',
-      auth_url: connection[:auth_url],
-      project_name: connection[:project_name],
-      project_domain_name: connection[:project_domain_name],
-      authtenant_name: connection[:tenant],
-      service_type: 'object-store'
-    )
+  def initialize(connection = {})
+    extra_opt = { auth_method: 'password',
+                  service_type: 'object-store' }
+    options = SwiftIngest::DEFAULTS.merge(connection).merge(extra_opt)
+    options[:api_key] = options.delete :password
+
+    @swift_connection = OpenStack::Connection.create(options)
     @project = connection[:project]
   end
 

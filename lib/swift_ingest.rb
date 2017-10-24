@@ -5,11 +5,12 @@ require 'active_support/core_ext'
 
 module SwiftIngest
   DEFAULTS = {
-    auth_version: 'v1.0',
     tenant: 'tester',
     username: 'test:tester',
     password: 'testing',
-    endpoint: 'http://localhost:8080',
-    container: 'ERA'
+    auth_url: 'http://www.example.com:8080/auth/v1.0',
+    project: 'ERA',
+    project_name: 'ERA',
+    project_domain_name: 'default'
   }.freeze
 end
