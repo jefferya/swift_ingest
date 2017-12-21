@@ -1,5 +1,6 @@
 require 'swift_ingest/version'
 require 'openstack'
+require 'mysql'
 
 class SwiftIngest::Ingestor
 
@@ -13,9 +14,22 @@ class SwiftIngest::Ingestor
 
     @swift_connection = OpenStack::Connection.create(options)
     @project = connection[:project]
+
+    # connect to the database
+
+    @dbcon = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], ENV['DB_DATABASE'] if
+        ENV['DB_HOST'] && ENV['DB_USER'] && ENV['DB_PASSWORD'] && ENV['DB_DATABASE']
   end
 
-  def deposit_file(file_name, swift_container)
+  def get_file_from_swit(file_name, swift_container)
+    deposited_file = nil
+    file_base_name = File.basename(file_name, '.*')
+    container = swift_connection.container(swift_container)
+    deposited_file = container.object(file_base_name) if container.object_exists?(file_base_name)
+    deposited_file
+  end
+
+  def deposit_file(file_name, swift_container, custom_metadata = {})
     file_base_name = File.basename(file_name, '.*')
     checksum = Digest::MD5.file(file_name).hexdigest
     container = swift_connection.container(swift_container)
@@ -27,7 +41,7 @@ class SwiftIngest::Ingestor
       project_id: file_base_name,
       promise: 'bronze',
       aip_version: '1.0'
-    }
+    }.merge(custom_metadata)
 
     # ruby-openstack wants all keys of the metadata to be named like
     # "X-Object-Meta-{{Key}}" so update them
@@ -47,6 +61,17 @@ class SwiftIngest::Ingestor
                   content_type:  'application/x-tar',
                   metadata: metadata }
       deposited_file = container.create_object(file_base_name, headers, File.open(file_name))
+    end
+
+    return deposited_file unless @dbcon
+
+    # update db with deposited file info
+    @dbcon.query("INSERT INTO archiveEvent(poject, container, ingestTime, fileName, fileChecksum, fileSize) \
+            VALUES('#{@project}', '#{swift_container}', now(), '#{file_base_name}', '#{checksum}', \
+            '#{File.size(file_name)}')")
+    custom_metadata.each do |key, value|
+      @dbcon.query("INSERT INTO customMethadata(eventId, name, value) \
+                 VALUES(LAST_INSERT_ID(), '#{key}', '#{value}' )")
     end
 
     deposited_file
