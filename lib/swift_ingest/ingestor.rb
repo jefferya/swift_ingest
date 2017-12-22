@@ -66,11 +66,11 @@ class SwiftIngest::Ingestor
     return deposited_file unless @dbcon
 
     # update db with deposited file info
-    @dbcon.query("INSERT INTO archiveEvent(poject, container, ingestTime, fileName, fileChecksum, fileSize) \
+    @dbcon.query("INSERT INTO archiveEvent(poject, container, ingestTime, objectIdentifier, objectChecksum, objectSize)\
             VALUES('#{@project}', '#{swift_container}', now(), '#{file_base_name}', '#{checksum}', \
             '#{File.size(file_name)}')")
     custom_metadata.each do |key, value|
-      @dbcon.query("INSERT INTO customMethadata(eventId, name, value) \
+      @dbcon.query("INSERT INTO customMetadata(eventId, name, value) \
                  VALUES(LAST_INSERT_ID(), '#{key}', '#{value}' )")
     end
 
