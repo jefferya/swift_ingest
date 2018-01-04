@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'activesupport', '~> 5.0'
   s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
+  s.add_runtime_dependency 'mysql', '~> 2.9'
 
   s.add_development_dependency 'bundler', '~> 1.14'
   s.add_development_dependency 'pry', '~> 0.10', '>= 0.10.4'

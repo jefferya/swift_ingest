@@ -70,7 +70,7 @@ class SwiftIngest::Ingestor
             VALUES('#{@project}', '#{swift_container}', now(), '#{file_base_name}', '#{checksum}', \
             '#{File.size(file_name)}')")
     custom_metadata.each do |key, value|
-      @dbcon.query("INSERT INTO customMetadata(eventId, name, value) \
+      @dbcon.query("INSERT INTO customMetadata(eventId, property_name, property_value) \
                  VALUES(LAST_INSERT_ID(), '#{key}', '#{value}' )")
     end
 
