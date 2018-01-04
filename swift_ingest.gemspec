@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.date          = '2017-08-31'
   s.authors       = ['DI Team U of A']
   s.email         = 'strilets@ualberta.ca'
-  s.files         = ['lib/swift_ingest.rb']
 
   s.summary       = 'This is gems that allows depositing files into openstack swift repository'
   s.description   = 'Gem to deposit files into swift reposiroty'
@@ -25,8 +24,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3.1'
 
   s.add_runtime_dependency 'activesupport', '~> 5.0'
-  s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
   s.add_runtime_dependency 'mysql', '~> 2.9'
+  s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
 
   s.add_development_dependency 'bundler', '~> 1.14'
   s.add_development_dependency 'pry', '~> 0.10', '>= 0.10.4'
