@@ -1,6 +1,6 @@
 require 'swift_ingest/version'
 require 'openstack'
-require 'mysql'
+require 'mysql2'
 
 class SwiftIngest::Ingestor
 
@@ -70,7 +70,7 @@ class SwiftIngest::Ingestor
             VALUES('#{@project}', '#{swift_container}', now(), '#{file_base_name}', '#{checksum}', \
             '#{File.size(file_name)}')")
     custom_metadata.each do |key, value|
-      @dbcon.query("INSERT INTO customMetadata(eventId, property_name, property_value) \
+      @dbcon.query("INSERT INTO customMetadata(eventId, propertyName, propertyValue) \
                  VALUES(LAST_INSERT_ID(), '#{key}', '#{value}' )")
     end
 

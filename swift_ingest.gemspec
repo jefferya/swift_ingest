@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3.1'
 
   s.add_runtime_dependency 'activesupport', '~> 5.0'
-  s.add_runtime_dependency 'mysql', '~> 2.9'
+  s.add_runtime_dependency 'mysql2', '~> 0.4.6'
   s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
 
   s.add_development_dependency 'bundler', '~> 1.14'
