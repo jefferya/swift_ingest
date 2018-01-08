@@ -16,9 +16,12 @@ class SwiftIngest::Ingestor
     @project = connection[:project]
 
     # connect to the database
-
-    @dbcon = Mysql.new ENV['DB_HOST'], ENV['DB_USER'], ENV['DB_PASSWORD'], ENV['DB_DATABASE'] if
-        ENV['DB_HOST'] && ENV['DB_USER'] && ENV['DB_PASSWORD'] && ENV['DB_DATABASE']
+    @dbcon = if ENV['DB_HOST'] && ENV['DB_USER'] && ENV['DB_PASSWORD'] && ENV['DB_DATABASE']
+               Mysql2::Client.new(host: ENV['DB_HOST'],
+                                  username: ENV['DB_USER'],
+                                  password: ENV['DB_PASSWORD'],
+                                  database: ENV['DB_DATABASE'])
+             end
   end
 
   def get_file_from_swit(file_name, swift_container)
