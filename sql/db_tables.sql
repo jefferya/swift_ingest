@@ -1,13 +1,5 @@
--- check that DB exits
-CREATE DATABASE IF NOT EXISTS swift_ingest;
-
--- use DB
-use swift_ingest;
-
--- (re)create tables
-
 -- archiveEvent
-drop table if exists swift_ingest.archiveEvent;
+drop table if exists archiveEvent;
 CREATE TABLE `archiveEvent`
 ( `id`            int(10) unsigned NOT NULL AUTO_INCREMENT,
   `project`        varchar(64)      NOT NULL,
@@ -20,7 +12,7 @@ CREATE TABLE `archiveEvent`
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- customMetadata
-drop table if exists swift_ingest.customMetadata;
+drop table if exists customMetadata;
 CREATE TABLE `customMetadata`
 ( `eventId`       int(10) unsigned NOT NULL,
   `propertyName`          varchar(64)  DEFAULT NULL,
