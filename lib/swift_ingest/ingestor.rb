@@ -33,7 +33,10 @@ class SwiftIngest::Ingestor
   end
 
   def deposit_file(file_name, swift_container, custom_metadata = {})
-    file_base_name = File.basename(file_name, '.*')
+    deposit_file(File.basename(file_name, '.*'), file_name, swift_container, custom_metadata = {})
+  end
+
+  def deposit_file(id, file_name, swift_container, custom_metadata = {})
     checksum = Digest::MD5.file(file_name).hexdigest
     container = swift_connection.container(swift_container)
 
@@ -41,7 +44,7 @@ class SwiftIngest::Ingestor
     # https://docs.google.com/document/d/154BqhDPAdGW-I9enrqLpBYbhkF9exX9lV3kMaijuwPg/edit#
     metadata = {
       project: @project,
-      project_id: file_base_name,
+      project_id: id,
       promise: 'bronze',
       aip_version: '1.0'
     }.merge(custom_metadata)
@@ -50,20 +53,20 @@ class SwiftIngest::Ingestor
     # "X-Object-Meta-{{Key}}" so update them
     metadata.transform_keys! { |key| "X-Object-Meta-#{key}" }
 
-    if container.object_exists?(file_base_name)
+    if container.object_exists?(id)
       # temporary solution until fixed in upstream:
       # for update: construct hash for key/value pairs as strings,
       # and metadata as additional key/value string pairs in the hash
       headers = { 'etag' => checksum,
                   'content-type' => 'application/x-tar' }.merge(metadata)
-      deposited_file = container.object(file_base_name)
+      deposited_file = container.object(id)
       deposited_file.write(File.open(file_name), headers)
     else
       # for creating new: construct hash with symbols as keys, add metadata as a hash within the header hash
       headers = { etag: checksum,
                   content_type:  'application/x-tar',
                   metadata: metadata }
-      deposited_file = container.create_object(file_base_name, headers, File.open(file_name))
+      deposited_file = container.create_object(id, headers, File.open(file_name))
     end
 
     return deposited_file unless @dbcon
@@ -71,7 +74,7 @@ class SwiftIngest::Ingestor
     # update db with deposited file info
     @dbcon.query("INSERT INTO archiveEvent(project, container, ingestTime, \
                   objectIdentifier, objectChecksum, objectSize) \
-                  VALUES('#{@project}', '#{swift_container}', now(), '#{file_base_name}', '#{checksum}', \
+                  VALUES('#{@project}', '#{swift_container}', now(), '#{id}', '#{checksum}', \
                   '#{File.size(file_name)}')")
     custom_metadata.each do |key, value|
       @dbcon.query("INSERT INTO customMetadata(eventId, propertyName, propertyValue) \

@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'mysql2', '~> 0.4.6'
   s.add_runtime_dependency 'openstack', '~> 3.3', '>= 3.3.10'
 
-  s.add_development_dependency 'bundler', '~> 1.14'
+  s.add_development_dependency 'bundler', '~> 2.0'
   s.add_development_dependency 'pry', '~> 0.10', '>= 0.10.4'
   s.add_development_dependency 'rake', '~> 12.0'
   s.add_development_dependency 'rspec', '~> 3.0'
