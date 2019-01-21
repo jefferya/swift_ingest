@@ -24,6 +24,9 @@ class SwiftIngest::Ingestor
              end
   end
 
+  # ToDo: refactor
+  # (a) to avoid reopening the container each time
+  # (b) if not extension on the filename then potentially fails if base name contains a '.'
   def get_file_from_swit(file_name, swift_container)
     deposited_file = nil
     file_base_name = File.basename(file_name, '.*')
@@ -32,11 +35,16 @@ class SwiftIngest::Ingestor
     deposited_file
   end
 
-  def deposit_file(file_name, swift_container, custom_metadata = {})
-    deposit_file(File.basename(file_name, '.*'), file_name, swift_container, custom_metadata = {})
+  def lookup(id, swift_container)
+    container = swift_connection.container(swift_container)
+    container.object(id) if container.object_exists?(id)
   end
 
-  def deposit_file(id, file_name, swift_container, custom_metadata = {})
+  def deposit_file(file_name, swift_container, custom_metadata = {})
+    deposit_file(File.basename(file_name, '.*'), file_name, swift_container, custom_metadata)
+  end
+
+  def deposit(id, file_name, swift_container, custom_metadata = {})
     checksum = Digest::MD5.file(file_name).hexdigest
     container = swift_connection.container(swift_container)
 
