@@ -24,7 +24,7 @@ class SwiftIngest::Ingestor
              end
   end
 
-  # ToDo: refactor
+  # TODO: refactor
   # (a) to avoid reopening the container each time
   # (b) if not extension on the filename then potentially fails if base name contains a '.'
   def get_file_from_swit(file_name, swift_container)
@@ -72,7 +72,7 @@ class SwiftIngest::Ingestor
     else
       # for creating new: construct hash with symbols as keys, add metadata as a hash within the header hash
       headers = { etag: checksum,
-                  content_type:  'application/x-tar',
+                  content_type: 'application/x-tar',
                   metadata: metadata }
       deposited_file = container.create_object(id, headers, File.open(file_name))
     end
