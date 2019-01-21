@@ -41,7 +41,7 @@ class SwiftIngest::Ingestor
   end
 
   def deposit_file(file_name, swift_container, custom_metadata = {})
-    deposit_file(File.basename(file_name, '.*'), file_name, swift_container, custom_metadata)
+    deposit(File.basename(file_name, '.*'), file_name, swift_container, custom_metadata)
   end
 
   def deposit(id, file_name, swift_container, custom_metadata = {})
